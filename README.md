@@ -2,6 +2,10 @@
 
 This project uses the **TTNet deep learning architecture** to analyze table tennis gameplays in real time. It detects the ball, identifies forehand and backhand shots, and provides players with actionable feedback on their performance — including **suggested training modules** for improvement.
 
+## Inference of the Model
+
+![demo] (./inference.gif)
+
 ---
 
 ## 🚀 Features
