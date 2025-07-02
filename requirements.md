@@ -1,0 +1,29 @@
+## Libraries / Packages Requirements:
+
+```
+torch==2.1.0
+torchvision==0.16.0
+numpy==1.24.4
+opencv-python==4.8.0.76
+scipy==1.10.1
+tqdm==4.66.1
+tensorboard==2.13.0
+Pillow==10.0.1
+matplotlib==3.7.2
+PyTurboJPEG==1.6.4
+pyyaml==6.0.1
+```
+
+### Optional (in case you use specific video decoding tools):
+
+```
+ffmpeg-python==0.2.0
+```
+
+### Notes:
+
+* Adjust `torch` and `torchvision` versions based on your CUDA version (e.g., use `torch==2.1.0+cu117` if using CUDA 11.7).
+* You can install using:
+
+  ```bash
+  pip install -r requirements.txt
