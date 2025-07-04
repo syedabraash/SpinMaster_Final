@@ -1,145 +1,153 @@
-# 🏓 SpinMaster - Intelligent Table Tennis Analyzer
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-Web_App-000000?logo=flask)
+![License](https://img.shields.io/github/license/syedabraash/spinmaster_final)
+![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux-lightgrey)
+![Status](https://img.shields.io/badge/Status-Active-brightgreen)
+![Made With ❤️](https://img.shields.io/badge/Made%20with-%E2%9D%A4-red)
 
-This project uses the **TTNet deep learning architecture** to analyze table tennis gameplays in real time. It detects the ball, identifies forehand and backhand shots, and provides players with actionable feedback on their performance — including **suggested training modules** for improvement.
+# 🚀 SpinMaster | AI-Powered Table Tennis Coach
 
----
-
-## 🚀 Features
-
-- 🎯 **Ball Tracking**: Detects and tracks the table tennis ball in real-time video footage.
-- 🧠 **Shot Classification**: Classifies player shots as either **forehand** or **backhand**.
-- 📈 **Performance Feedback**: Analyzes shot data to highlight the player’s strengths and weaknesses.
-- 🏋️‍♂️ **Training Suggestions**: Recommends specific training videos or modules hosted on our website to help players improve.
+SpinMaster is your ultimate virtual table tennis analyst — a full-stack AI application that breaks down match footage, identifies gameplay weaknesses, and recommends personalized training modules to help players level up their performance like the pros.
 
 ---
 
-## 📂 Project Structure
+## 🌟 Features
 
-```
+- 🎥 **Video Upload Interface** — Upload match videos directly through a sleek web interface.
+- 🤖 **Automated Pose Detection** — Detects elbow angles and arm orientation to classify forehand and backhand shots.
+- 📊 **Match Analysis Engine** — Calculates shot success rates and determines weak areas.
+- 🧠 **TTNet Integration (Modular)** — Built to support advanced table tennis models like [TTNet](https://github.com/OSAI-ai/TTNet) for precise shot classification.
+- 📈 **Dynamic Leaderboards** — Rank top players using comic-inspired UI.
+- 🎓 **Smart Training Suggestions** — Recommends YouTube tutorials based on your weaknesses.
+- 🔐 **User Authentication** — Register and log in to track your progress (with session support).
+- 🌐 **Flask-based Local Server** — Lightweight, local-first deployment with modern UI/UX.
 
-├── src/
-│   ├── config/                   # Training configurations (e.g., train\_1st\_phase.yaml)
-│   ├── data\_process/            # Dataset loading, transformations, and processing
-│   ├── models/                  # TTNet model and its components
-│   ├── utils/                   # Helper functions (e.g., logger, metrics)
-│   ├── main.py                  # Entry point for training/inference
-│
-├── dataset/                     # Training/validation/test datasets
-├── checkpoints/                 # Model checkpoints after training
-├── runs/                        # TensorBoard logs
-├── requirements.txt             # Python dependencies
-├── train\_1st\_phase.sh           # First-phase training script (global + segmentation)
-└── README.md                    # Project documentation
+---
 
+## 🧩 Architecture Breakdown
+
+### 1. `pose_to_csv.py`  
+Utilizes [MediaPipe](https://github.com/google/mediapipe) pose landmarks to:
+- Extract joint positions (specifically elbow angles)
+- Identify the shot type (forehand/backhand) using angle deltas
+- Timestamp each frame
+- Track shot success based on rally outcome
+- Export structured `.csv` data for analysis
+
+### 2. `csv_analyzer.py`  
+Reads the generated CSV and:
+- Computes per-player statistics
+- Calculates shot-wise success ratios
+- Determines point and match winners
+- Feeds performance summary to front-end (forehand/backhand strengths)
+
+### 3. `analyze_match.py`  
+A simple entry point that merges the above scripts for batch processing or CLI testing.
+
+### 4. `app.py`  
+Your all-in-one Flask server:
+- Manages video uploads
+- Runs the full analysis pipeline
+- Displays real-time feedback
+- Handles user login/registration
+- Renders leaderboard and training module pages
+
+---
+
+## 🧠 TTNet Model (Optional Extension)
+
+SpinMaster is built with modularity in mind. While it runs a lightweight elbow-angle classification model by default, it also supports powerful integrations like:
+> A dedicated table tennis recognition model trained on extensive datasets to detect:
+- Forehand / Backhand
+- Serve / Smash / Topspin
+- Ball location & player segmentation
+
+🧪 We're currently integrating TTNet as an alternate backend for precision-grade analysis using deep learning.
+
+---
+
+## 🎨 UI & UX Highlights
+
+- **Pastel & Neon Dark Mode** 🎨
+- Glassmorphism cards and overlays
+- Background video or image with motivational quotes
+- Embedded YouTube training cards
+- Responsive layout (desktop-first)
+
+---
+
+## 🚀 Getting Started
+
+1. Clone the repository  
+```bash
+   git clone https://github.com/yourusername/spinmaster.git
+   cd spinmaster
 ````
 
+2. Install dependencies
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Launch the Flask app
+
+   ```bash
+   python app.py
+   ```
+
+4. Open in browser: `http://127.0.0.1:5000/`
+
 ---
 
-## 🧪 How It Works
-
-1. **Input**: The player uploads a gameplay video.
-2. **Detection & Analysis**:
-   - Ball is tracked using global and local detection modules.
-   - Each shot is classified as forehand or backhand.
-   - Shot accuracy and distribution are computed.
-3. **Feedback Output**:
-   - A report is generated highlighting areas for improvement (e.g., "Improve backhand accuracy").
-   - Relevant training modules are suggested.
-
----
-
-## ⚙️ Setup Instructions
-
-### 1. Clone the Repository
-```bash
-git clone https://github.com/yourusername/TTNet-TableTennis-Analyzer.git
-cd TTNet-TableTennis-Analyzer
-````
-
-### 2. Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 3. Prepare Dataset
-
-Organize your dataset as follows:
+## 📁 Folder Structure
 
 ```
-dataset/
-├── training/
-│   ├── images/
-│   ├── labels/
-│   └── segmentation_masks/
-├── validation/
-│   └── ...
-```
-
-### 4. Train the Model
-
-**Phase 1 (global + segmentation):**
-
-```bash
-python src/main.py --config src/config/train_1st_phase.yaml
-```
-
-**Phase 2 (full TTNet):**
-
-```bash
-python src/main.py --config src/config/train.yaml
+SpinMaster/
+├── app.py
+├── pose_to_csv.py
+├── csv_analyzer.py
+├── analyze_match.py
+├── users.json
+├── uploads/
+├── static/
+│   ├── styles.css
+│   ├── login-icon.png
+│   └── tt.jpg / tt.mp4
+└── templates/
+    ├── index.html
+    ├── login.html
+    ├── leaderboard.html
+    └── training.html
 ```
 
 ---
 
-## 📊 Inference and Feedback Generation
+## 👤 Author
 
-To run inference on new gameplay footage:
-
-```bash
-python src/inference.py --video_path path/to/your/gameplay.mp4
-```
-
-The system will:
-
-* Process the video
-* Generate a performance report
-* Output suggested training modules
+**Abraash Syed**
+Futurist | AI Developer | Table Tennis Enthusiast 🏓
+[GitHub](https://github.com/syedabraash) • [LinkedIn](https://www.linkedin.com/in/syedabraash/)
 
 ---
 
-## 💡 Example Use Case
+## Acknowledgments
+Special thanks to the incredible individuals and organizations whose work and contributions made SpinMaster possible:
 
-> *"After uploading his match footage, Ali received a report stating his forehand was 80% accurate while his backhand dropped to 42%. The system suggested two drills focused on backhand consistency, linking directly to videos on our website."*
+Lab OSAI — For providing the table tennis datasets used to train and test TTNet
+Nguyen Mau Dzung — For detailed guidance and model structure of the TTNet architecture
+MediaPipe — For enabling seamless pose tracking and landmark detection
+Nicholas Renotte — For insightful tutorials and guidance on object recognition using the Roboflow platform
+WTT (World Table Tennis) — For global player rankings and match insights
+And all other open-source contributors, documentation authors, and creators whose tools and knowledge supported the development of this project.
 
----
-
-## 🧠 Model Architecture
-
-* **TTNet** is a multi-branch model with the following components:
-
-  * Global Ball Detection
-  * Local Ball Refinement
-  * Shot Event Classification (Forehand/Backhand)
-  * Segmentation (for context)
+Without this collective foundation, SpinMaster would not exist.
 
 ---
 
-## 📌 Future Work
+## 📄 License
 
-* Add real-time analysis mode (live camera input)
-* Expand shot classification (smash, loop, push)
-* Player detection and movement tracking
+MIT License © 2025 Abraash Syed
+Feel free to use, contribute, and help SpinMaster grow!
 
----
-
-## 🤝 Contributing
-
-Pull requests and issues are welcome! Feel free to fork the repo, suggest features, or report bugs.
-
----
-
-## 📜 License
-
-This project is licensed under the MIT License.
-```
+> “Master the spin, master the game.”
