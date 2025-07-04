@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SpinMaster - Table Tennis AI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <video autoplay muted loop id="bg-video">
+        <source src="/static/tt.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+    </video>
+  <div class="bg-image"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="{{ url_for('index') }}" class="logo">SpinMaster</a>
+    <div class="nav-center">
+      <a href="{{ url_for('leaderboard') }}">Leaderboard</a>
+      <a href="{{ url_for('training') }}">Training Modules</a>
+    </div>
+    <div class="nav-right">
+        {% if session.get('user') %}
+        <span class="welcome">Welcome, {{ session['user'] }}</span>
+        <a href="/logout" class="logout-button">Logout</a>
+    {% else %}
+        <a href="/login"><img src="/static/login-icon.svg" class="login-icon" alt="Login" /></a>
+    {% endif %}
+</div>
+
+  </nav>
+
+  <!-- Motivational Quote -->
+    <section class="quote-overlay">
+    <div class="quote-box">
+        <h1>"Master the spin, master the game."</h1>
+        <p class="quote-sub">~with spinmaster~</p>
+    </div>
+    </section>
+  <!-- Upload Form -->
+  <div class="form-floating-box">
+    <form method="POST" action="/" enctype="multipart/form-data">
+      <label for="video">Upload Your Match Video</label>
+      <input type="file" name="video" accept="video/*" required />
+      <button type="submit">Analyze Match</button>
+    </form>
+  </div>
+
+
+
+<!-- Suggested Trainings -->
+{% if feedback %}
+  <div class="analysis-section">
+    <section class="feedback-container">
+      {% if feedback.error %}
+        <h3>Error: {{ feedback.error }}</h3>
+      {% else %}
+        <h2>📊 Match Feedback</h2>
+        {% for player, data in feedback.items() %}
+          <h3>{{ player|capitalize }}</h3>
+          <p>Forehand Success:
+            <span class="success-rate {% if data.forehand < 40 %}low{% elif data.forehand <= 70 %}mid{% else %}high{% endif %}">
+              {{ data.forehand }}%
+            </span>
+          </p>
+          <p>Backhand Success:
+            <span class="success-rate {% if data.backhand < 40 %}low{% elif data.backhand <= 70 %}mid{% else %}high{% endif %}">
+              {{ data.backhand }}%
+            </span>
+          </p>
+          <hr>
+        {% endfor %}
+      {% endif %}
+    </section>
+
+    <section class="suggested-training">
+      <h2>🎯 Suggested Training Modules</h2>
+      <div class="training-cards">
+        <div class="card">
+          <iframe src="https://www.youtube.com/embed/gbc3WNC1pBQ" allowfullscreen></iframe>
+          <p>Improve Your Forehand Topspin</p>
+        </div>
+        <div class="card">
+          <iframe src="https://www.youtube.com/embed/FFZq-hgcUXE" allowfullscreen></iframe>
+          <p>Boost Your Backhand Power</p>
+        </div>
+      </div>
+    </section>
+  </div>
+{% endif %}

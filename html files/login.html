@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | SpinMaster</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="login-page-wrapper">
+    <div class="login-card">
+      <h2>Login or Register</h2>
+      <form method="POST">
+        <input type="text" name="username" placeholder="Username" required />
+        <input type="password" name="password" placeholder="Password" required />
+        <div class="login-buttons">
+          <button type="submit" name="action" value="Login">Login</button>
+          <button type="submit" name="action" value="Register">Register</button>
+        </div>
+      </form>
+      {% if message %}
+        <p class="message">{{ message }}</p>
+      {% endif %}
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <p class="{{ category }}">{{ message }}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    </div>
+  </div>
+</body>
+</html>

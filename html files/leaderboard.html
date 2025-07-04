@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Leaderboard | SpinMaster</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="bg-image"></div>
+
+  <nav class="navbar">
+    <a href="{{ url_for('index') }}" class="logo">SpinMaster</a>
+    <div class="nav-center">
+      <a href="{{ url_for('leaderboard') }}">Leaderboard</a>
+      <a href="{{ url_for('training') }}">Training Modules</a>
+    </div>
+    <div class="nav-right">
+      <a href="{{ url_for('login') }}">
+        <img src="{{ url_for('static', filename='login-icon.png') }}" alt="Login" class="login-icon">
+      </a>
+    </div>
+  </nav>
+
+  <section class="leaderboard-section">
+    {% set players = [
+      {'rank':1,'name':'Lin Shidong','score':'8675','country':'China'},
+      {'rank':2,'name':'Wang Chuqin','score':'6575','country':'China'},
+      {'rank':3,'name':'Hugo Calderano','score':'5400','country':'Brazil'},
+      {'rank':4,'name':'Tomokazu Harimoto','score':'4550','country':'Japan'},
+      {'rank':5,'name':'Liang Jingkun','score':'4200','country':'China'},
+      {'rank':6,'name':'Truls Moregard','score':'3680','country':'Sweden'},
+      {'rank':7,'name':'Felix Lebrun','score':'3220','country':'France'},
+      {'rank':8,'name':'Lin Yun-Ju','score':'2310','country':'Chinese Taipei'},
+      {'rank':9,'name':'Darko Jorgic','score':'2275','country':'Slovenia'},
+      {'rank':10,'name':'Xiang Peng','score':'2235','country':'China'},
+    ] %}
+    {% for p in players %}
+      <div class="hero-card">
+        <img class="hero-avatar" src="{{ url_for('static', filename='avatars/' + p.name.replace(' ', '_') + '.jpg') }}" alt="{{ p.name }}">
+        <div class="hero-rank">#{{ p.rank }}</div>
+        <div class="hero-name">{{ p.name }}</div>
+        <div class="hero-country">{{ p.country }}</div>
+        <div class="hero-score">{{ p.score }} pts</div>
+      </div>
+    {% endfor %}
+  </section>
+</body>
+</html>

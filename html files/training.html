@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Training Modules | SpinMaster</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="bg-image"></div>
+
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <div class="nav-left">
+        <a href="/" class="logo">SpinMaster</a>
+      </div>
+      <div class="nav-center">
+        <a href="/leaderboard">Leaderboard</a>
+        <a href="/training">Training Modules</a>
+      </div>
+      <div class="nav-right">
+        <a href="/login"><img src="{{ url_for('static', filename='login-icon.svg') }}" alt="Login" class="login-icon" /></a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Page Title -->
+  <div class="quote-overlay" style="margin-top: 140px;">
+    <h1>Beginner Friendly 3d Lessons</h1>
+  </div>
+
+  <!-- Training Cards -->
+  <div class="suggested-training">
+    <div class="training-cards">
+      <div class="card">
+        <iframe src="https://www.youtube.com/embed/zt9emvSlceE" allowfullscreen></iframe>
+        <p>How to Hold the Racket Like a Pro</p>
+      </div>
+      <div class="card">
+        <iframe src="https://www.youtube.com/embed/Kcsx-g8j6Eg" allowfullscreen></iframe>
+        <p>How to Unlock your FULL POTENTIAL</p>
+      </div>
+      <div class="card">
+        <iframe src="https://www.youtube.com/embed/F2XZjDDwjxQ" allowfullscreen></iframe>
+        <p>Defensive Technique vs Powerful Attacks</p>
+      </div>
+      <div class="card">
+        <iframe src="https://www.youtube.com/embed/RZMHiKnk8O4" allowfullscreen></iframe>
+        <p>How to Perform a SUPER FAST SERVE?</p>
+      </div>
+      <div class="card">
+        <iframe src="https://www.youtube.com/embed/ZcD0n3GBsZ8" allowfullscreen></iframe>
+        <p>Generate Maximum Spin in Table Tennis</p>
+      </div>
+      <div class="card">
+        <iframe src="https://www.youtube.com/embed/B5HVrxujvdc" allowfullscreen></iframe>
+        <p>How to do a Legal Serve?</p>
+      </div>
+      <div class="card">
+        <iframe src="https://www.youtube.com/embed/QZD12c2IaSA" allowfullscreen></iframe>
+        <p>4 different techniques for the reverse pendulum serve</p>
+      </div>
+      <div class="card">
+        <iframe src="https://www.youtube.com/embed/Nlq1XCbx8dk" allowfullscreen></iframe>
+        <p>3 Tips for a long and fast serve</p>
+      </div>
+      <div class="card">
+        <iframe src="https://www.youtube.com/embed/o83HTcLVClE" allowfullscreen></iframe>
+        <p>Increase Control on Forehand</p>
+      </div>
+      <div class="card">
+        <iframe src="https://www.youtube.com/embed/kHhNu8m-FtM" allowfullscreen></iframe>
+        <p>8 most important types of spins</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Padding for scroll -->
+  <div style="height: 150px;"></div>
+</body>
+</html>
